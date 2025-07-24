@@ -6,6 +6,7 @@ function Sheet() {
     const CELL_HEIGHT = 40;
 
     const [dimensions, setDimensions] = useState({ rows: 0, columns: 0 });
+    const [initialDimensions, setInitialDimensions] = useState({ rows: 0, columns: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -16,6 +17,7 @@ function Sheet() {
         const rows = Math.floor(rawRows * 1.25);
 
         setDimensions({ rows, columns });
+        setInitialDimensions({ rows, columns });
     }, []);
 
     function handleScroll() {
@@ -25,15 +27,15 @@ function Sheet() {
         const nearRight = container.scrollLeft + container.clientWidth >= container.scrollWidth - 5;
         const nearBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 5;
 
-        if (nearRight || nearBottom) {
-            setDimensions(prev => {
-                const newRows = Math.floor(prev.rows * 1.5);
-                const newColumns = Math.floor(prev.columns * 1.5);
-
-                if (newRows === prev.rows && newColumns === prev.columns) return prev;
-
-                return { rows: newRows, columns: newColumns };
-            });
+        const newDimensions = { ...dimensions };
+        if (nearRight) {
+            newDimensions.columns += initialDimensions.columns * 2
+        }
+        if (nearBottom) {
+            newDimensions.rows += initialDimensions.rows * 2
+        }
+        if (newDimensions.rows !== dimensions.rows || newDimensions.columns !== dimensions.columns) {
+            setDimensions(newDimensions);
         }
     }
 

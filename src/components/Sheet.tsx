@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import Row from "./Row.tsx";
+import ColumnHeaders from "./ColumnHeaders.tsx";
 
 function Sheet() {
     const CELL_WIDTH = 80;
@@ -47,6 +48,7 @@ function Sheet() {
             onScroll={handleScroll}
             className="w-screen h-screen overflow-auto bg-white"
         >
+            <ColumnHeaders columns={columns} rowHeaderWidth={String(rows).length * 10 + 20}/>
             {Array.from({ length: rows }).map((_, rowIdx) => (
                 <div key={`row-${rowIdx}`} className="flex">
                     <Row index={rowIdx} columns={columns} headerWidth={String(rows).length * 10 + 20} />

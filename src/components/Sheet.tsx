@@ -45,10 +45,12 @@ function Sheet() {
         <div
             ref={containerRef}
             onScroll={handleScroll}
-            className="w-screen h-screen overflow-auto flex flex-col"
+            className="w-screen h-screen overflow-auto bg-white"
         >
-            {Array.from({ length: rows }).map((_, index) => (
-                <Row index={index} columns={columns} />
+            {Array.from({ length: rows }).map((_, rowIdx) => (
+                <div key={`row-${rowIdx}`} className="flex">
+                    <Row index={rowIdx} columns={columns} headerWidth={String(rows).length * 10 + 20} />
+                </div>
             ))}
         </div>
     );

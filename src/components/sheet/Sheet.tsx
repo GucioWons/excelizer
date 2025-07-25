@@ -59,7 +59,7 @@ function Sheet() {
             onScroll={handleScroll}
             className="w-screen h-screen overflow-auto bg-white"
         >
-            <ColumnHeadersRow columns={columns} rowHeaderWidth={getRowHeaderWidth()} />
+            <ColumnHeadersRow columns={columns} rowHeaderWidth={getRowHeaderWidth()} selectedColumn={selectedCell?.column}/>
             {Array.from({length: rows}).map((_, rowIdx) => (
                 <div key={`row-${rowIdx}`} className="flex">
                     <Row

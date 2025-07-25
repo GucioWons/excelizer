@@ -1,4 +1,4 @@
-import Cell from "./Cell.tsx";
+import Cell from "../cell/Cell.tsx";
 import RowHeader from "./RowHeader.tsx";
 
 export interface RowProps {
@@ -14,10 +14,13 @@ function Row(props: RowProps) {
             className="flex flex-row"
         >
             <RowHeader index={props.index} width={props.headerWidth} />
-            {Array.from({length: props.columns}).map((_, colIdx) => (
+            {Array.from({length: props.columns}).map((_, columnIndex) => (
                 <Cell
+                    key={columnIndex}
                     row={props.index}
-                    column={colIdx}
+                    column={columnIndex}
+                    width={80}
+                    height={40}
                 />
             ))}
         </div>

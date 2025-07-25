@@ -1,4 +1,4 @@
-import Sheet from "./components/Sheet.tsx";
+import Sheet from "./components/sheet/Sheet.tsx";
 
 function App() {
 

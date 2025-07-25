@@ -2,12 +2,19 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import Row from "./row/Row.tsx";
 import ColumnHeadersRow from "./column/ColumnHeadersRow.tsx";
 
+export interface SelectedCell {
+    row: number;
+    column: number;
+}
+
 function Sheet() {
     const CELL_WIDTH = 80;
     const CELL_HEIGHT = 40;
 
     const [dimensions, setDimensions] = useState({rows: 0, columns: 0});
     const [initialDimensions, setInitialDimensions] = useState({rows: 0, columns: 0});
+    const [selectedCell, setSelectedCell] = useState<SelectedCell>();
+
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -55,7 +62,13 @@ function Sheet() {
             <ColumnHeadersRow columns={columns} rowHeaderWidth={getRowHeaderWidth()} />
             {Array.from({length: rows}).map((_, rowIdx) => (
                 <div key={`row-${rowIdx}`} className="flex">
-                    <Row index={rowIdx} columns={columns} headerWidth={getRowHeaderWidth()}/>
+                    <Row
+                        index={rowIdx}
+                        columns={columns}
+                        headerWidth={getRowHeaderWidth()}
+                        selectedCell={selectedCell}
+                        setSelectedCell={setSelectedCell}
+                    />
                 </div>
             ))}
         </div>

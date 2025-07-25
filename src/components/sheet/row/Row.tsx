@@ -16,7 +16,7 @@ function Row(props: RowProps) {
             key={props.index}
             className="flex flex-row"
         >
-            <RowHeader index={props.index} width={props.headerWidth} />
+            <RowHeader index={props.index} width={props.headerWidth} isSelected={props.selectedCell?.row == props.index} />
             {Array.from({length: props.columns}).map((_, columnIndex) => (
                 <Cell
                     key={columnIndex}

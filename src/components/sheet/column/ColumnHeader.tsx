@@ -22,13 +22,7 @@ function ColumnHeader(props: ColumnHeaderProps) {
     
     return (
         <div
-            style={{
-                width: defaultCellWidth,
-                height: defaultCellHeight,
-                // borderBottom: props.isSelected ? '3px solid green' : '1px solid #ccc',
-                // backgroundColor: props.isSelected ? '#ddd' : '#f9f9f9',
-                // fontWeight: props.isSelected ? 'bold' : 'normal',
-            }}
+            style={{ width: defaultCellWidth, height: defaultCellHeight }}
             className={`${columnHeader.base} ${isSelected ? columnHeader.selected : columnHeader.unselected}`}
         >
             {getColumnLetter()}

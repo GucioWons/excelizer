@@ -1,4 +1,5 @@
 import ColumnHeader from "./ColumnHeader.tsx";
+import EmptyColumnHeader from "./EmptyColumnHeader.tsx";
 
 export interface ColumnHeadersRowProps {
     columns: number;
@@ -10,10 +11,7 @@ function ColumnHeadersRow(props: ColumnHeadersRowProps) {
     return (
         <div className="flex">
             <div className="flex flex-row">
-                <div
-                    style={{width: props.rowHeaderWidth, height: 40}}
-                    className="border border-gray-300 bg-gray-100 flex items-center justify-center text-sm font-bold"
-                />
+                <EmptyColumnHeader width={props.rowHeaderWidth} />
                 {Array.from({length: props.columns}).map((_, columnIndex) => (
                     <ColumnHeader
                         key={columnIndex}

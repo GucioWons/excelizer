@@ -1,20 +1,19 @@
 import {cell} from "../../common/style/TailwindClasses.ts";
+import {defaultCellHeight, defaultCellWidth} from "../../common/style/Defaults.ts";
 
 export interface CellProps {
-    width: number;
-    height: number;
     isSelected: boolean;
     setSelectedCell: () => void;
 }
 
 function Cell(props: CellProps) {
-    const { width, height, isSelected, setSelectedCell } = props;
+    const { isSelected, setSelectedCell } = props;
 
     return (
         <div
             style={{
-                width: width,
-                height: height,
+                width: defaultCellWidth,
+                height: defaultCellHeight,
                 outlineOffset: isSelected ? '-1px' : undefined,
             }}
             className={`${cell.base} ${isSelected ? cell.selected : ''}`}

@@ -1,7 +1,6 @@
 import Cell from "../cell/Cell.tsx";
 import RowHeader from "./RowHeader.tsx";
 import type {SelectedCell} from "../Sheet.tsx";
-import {defaultCellHeight, defaultCellWidth} from "../../common/style/Defaults.ts";
 
 export interface RowProps {
     index: number;
@@ -25,8 +24,6 @@ function Row(props: RowProps) {
             {Array.from({length: columns}).map((_, columnIndex) => (
                 <Cell
                     key={columnIndex}
-                    width={defaultCellWidth}
-                    height={defaultCellHeight}
                     isSelected={selectedCell?.row === index && selectedCell?.column === columnIndex}
                     setSelectedCell={() => setSelectedCell({row: index, column: columnIndex})}
                 />

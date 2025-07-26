@@ -3,6 +3,16 @@ export const cell = {
     selected: 'relative z-10 outline outline-2 outline-green-600'
 }
 
+export const row = {
+
+}
+
+export const rowHeader = {
+    base: 'border border-gray-300 flex items-center justify-center text-sm',
+    unselected: 'bg-gray-100 font-normal border-b',
+    selected: 'bg-gray-300 font-bold border-r-4 border-r-green-600'
+}
+
 export const columnHeader = {
     base: 'border border-gray-300 flex items-center justify-center text-sm',
     unselected: 'bg-gray-100 font-normal border-b',

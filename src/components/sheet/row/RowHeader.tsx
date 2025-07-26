@@ -1,3 +1,5 @@
+import {rowHeader} from "../../common/style/TailwindClasses.ts";
+
 export interface RowHeaderProps {
     index: number;
     width: number;
@@ -10,12 +12,8 @@ function RowHeader(props: RowHeaderProps) {
             style={{
                 width: props.width,
                 height: 40,
-                borderRight: props.isSelected ? '3px solid green' : '1px solid #ccc',
-                backgroundColor: props.isSelected ? '#ddd' : '#f9f9f9',
-                fontWeight: props.isSelected ? 'bold' : 'normal',
-                boxSizing: 'border-box',
             }}
-            className="border border-gray-300 bg-gray-100 flex items-center justify-center text-sm font-bold"
+            className={`${rowHeader.base} ${props.isSelected ? rowHeader.selected : rowHeader.unselected}`}
         >
             {props.index + 1}
         </div>

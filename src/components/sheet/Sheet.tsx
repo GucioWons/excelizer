@@ -54,12 +54,14 @@ function Sheet() {
     }, [rows]);
 
     return (
+        <>
         <div
             ref={containerRef}
             onScroll={handleScroll}
             className="w-screen h-screen overflow-auto bg-white"
         >
-            <ColumnHeadersRow columns={columns} rowHeaderWidth={getRowHeaderWidth()} selectedColumn={selectedCell?.column}/>
+            <ColumnHeadersRow columns={columns} rowHeaderWidth={getRowHeaderWidth()}
+                              selectedColumn={selectedCell?.column}/>
             {Array.from({length: rows}).map((_, rowIdx) => (
                 <div key={`row-${rowIdx}`} className="flex">
                     <Row
@@ -72,7 +74,15 @@ function Sheet() {
                 </div>
             ))}
         </div>
-    );
+    <button
+        onClick={() => {}}
+        className="fixed bottom-4 right-4 bg-blue-500 text-white px-4 py-2 rounded shadow-lg hover:bg-blue-600 transition"
+    >
+        Edit Cell
+    </button>
+        </>
+)
+    ;
 }
 
 export default Sheet;

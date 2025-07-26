@@ -18,8 +18,6 @@ function ColumnHeadersRow(props: ColumnHeadersRowProps) {
                     <ColumnHeader
                         key={columnIndex}
                         index={columnIndex}
-                        width={80}
-                        height={40}
                         isSelected={selectedColumn === columnIndex}
                     />
                 ))}

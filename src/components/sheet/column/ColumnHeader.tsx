@@ -1,15 +1,14 @@
 import {useCallback} from "react";
 import {columnHeader} from "../../common/style/TailwindClasses.ts";
+import {defaultCellHeight, defaultCellWidth} from "../../common/style/Defaults.ts";
 
 export interface ColumnHeaderProps {
     index: number;
-    width: number;
-    height: number;
     isSelected: boolean;
 }
 
 function ColumnHeader(props: ColumnHeaderProps) {
-    const { index, width, height, isSelected } = props;
+    const { index, isSelected } = props;
 
     const getColumnLetter = useCallback(() => {
         let letter = '';
@@ -24,8 +23,8 @@ function ColumnHeader(props: ColumnHeaderProps) {
     return (
         <div
             style={{
-                width: width,
-                height: height,
+                width: defaultCellWidth,
+                height: defaultCellHeight,
                 // borderBottom: props.isSelected ? '3px solid green' : '1px solid #ccc',
                 // backgroundColor: props.isSelected ? '#ddd' : '#f9f9f9',
                 // fontWeight: props.isSelected ? 'bold' : 'normal',

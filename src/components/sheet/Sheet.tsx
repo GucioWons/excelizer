@@ -2,6 +2,7 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import Row from "./row/Row.tsx";
 import ColumnHeadersRow from "./column/ColumnHeadersRow.tsx";
 import EditCellButton from "./cell/EditCellButton.tsx";
+import {defaultCellHeight, defaultCellWidth} from "../common/style/Defaults.ts";
 
 export interface SelectedCell {
     row: number;
@@ -9,9 +10,6 @@ export interface SelectedCell {
 }
 
 function Sheet() {
-    const CELL_WIDTH = 80;
-    const CELL_HEIGHT = 40;
-
     const [dimensions, setDimensions] = useState({rows: 0, columns: 0});
     const [initialDimensions, setInitialDimensions] = useState({rows: 0, columns: 0});
     const [selectedCell, setSelectedCell] = useState<SelectedCell>();
@@ -19,8 +17,8 @@ function Sheet() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const rawColumns = window.innerWidth / CELL_WIDTH;
-        const rawRows = window.innerHeight / CELL_HEIGHT;
+        const rawColumns = window.innerWidth / defaultCellWidth;
+        const rawRows = window.innerHeight / defaultCellHeight;
 
         const columns = Math.floor(rawColumns * 1.25);
         const rows = Math.floor(rawRows * 1.25);

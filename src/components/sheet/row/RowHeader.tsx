@@ -1,4 +1,5 @@
 import {rowHeader} from "../../common/style/TailwindClasses.ts";
+import {defaultCellHeight} from "../../common/style/Defaults.ts";
 
 export interface RowHeaderProps {
     index: number;
@@ -13,7 +14,7 @@ function RowHeader(props: RowHeaderProps) {
         <div
             style={{
                 width: width,
-                height: 40,
+                height: defaultCellHeight,
             }}
             className={`${rowHeader.base} ${isSelected ? rowHeader.selected : rowHeader.unselected}`}
         >

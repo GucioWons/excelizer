@@ -1,6 +1,7 @@
 import {useCallback, useEffect, useRef, useState} from "react";
 import Row from "./row/Row.tsx";
 import ColumnHeadersRow from "./column/ColumnHeadersRow.tsx";
+import EditCellButton from "./cell/EditCellButton.tsx";
 
 export interface SelectedCell {
     row: number;
@@ -54,12 +55,14 @@ function Sheet() {
     }, [rows]);
 
     return (
+        <>
         <div
             ref={containerRef}
             onScroll={handleScroll}
             className="w-screen h-screen overflow-auto bg-white"
         >
-            <ColumnHeadersRow columns={columns} rowHeaderWidth={getRowHeaderWidth()} selectedColumn={selectedCell?.column}/>
+            <ColumnHeadersRow columns={columns} rowHeaderWidth={getRowHeaderWidth()}
+                              selectedColumn={selectedCell?.column}/>
             {Array.from({length: rows}).map((_, rowIdx) => (
                 <div key={`row-${rowIdx}`} className="flex">
                     <Row
@@ -72,7 +75,10 @@ function Sheet() {
                 </div>
             ))}
         </div>
-    );
+        <EditCellButton disabled={!selectedCell} />
+        </>
+)
+    ;
 }
 
 export default Sheet;

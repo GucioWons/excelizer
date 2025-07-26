@@ -7,15 +7,17 @@ export interface RowHeaderProps {
 }
 
 function RowHeader(props: RowHeaderProps) {
+    const { index, width, isSelected } = props;
+
     return (
         <div
             style={{
-                width: props.width,
+                width: width,
                 height: 40,
             }}
-            className={`${rowHeader.base} ${props.isSelected ? rowHeader.selected : rowHeader.unselected}`}
+            className={`${rowHeader.base} ${isSelected ? rowHeader.selected : rowHeader.unselected}`}
         >
-            {props.index + 1}
+            {index + 1}
         </div>
     );
 }

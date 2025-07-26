@@ -5,10 +5,12 @@ export interface EditCellButtonProps {
 }
 
 function EditCellButton(props: EditCellButtonProps) {
+    const { disabled } = props;
+
     return (
         <button
             onClick={() => {}}
-            className={`${editCellButton.base} ${props.disabled ? editCellButton.disabled : editCellButton.enabled}`}
+            className={`${editCellButton.base} ${disabled ? editCellButton.disabled : editCellButton.enabled}`}
         >
             Edit Cell
         </button>

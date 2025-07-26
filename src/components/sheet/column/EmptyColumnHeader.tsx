@@ -5,9 +5,11 @@ export interface EmptyColumnHeaderProps {
 }
 
 function EmptyColumnHeader(props: EmptyColumnHeaderProps) {
+    const { width } = props;
+
     return (
         <div
-            style={{width: props.width, height: 40}}
+            style={{width: width, height: 40}}
             className={`${columnHeader.base} ${columnHeader.unselected}`}
         />
     );

@@ -8,17 +8,19 @@ export interface ColumnHeadersRowProps {
 }
 
 function ColumnHeadersRow(props: ColumnHeadersRowProps) {
+    const { columns, rowHeaderWidth, selectedColumn } = props;
+
     return (
         <div className="flex">
             <div className="flex flex-row">
-                <EmptyColumnHeader width={props.rowHeaderWidth} />
-                {Array.from({length: props.columns}).map((_, columnIndex) => (
+                <EmptyColumnHeader width={rowHeaderWidth} />
+                {Array.from({length: columns}).map((_, columnIndex) => (
                     <ColumnHeader
                         key={columnIndex}
                         index={columnIndex}
                         width={80}
                         height={40}
-                        isSelected={props.selectedColumn === columnIndex}
+                        isSelected={selectedColumn === columnIndex}
                     />
                 ))}
             </div>

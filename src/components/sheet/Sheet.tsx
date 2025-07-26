@@ -1,6 +1,7 @@
 import {useCallback, useEffect, useRef, useState} from "react";
 import Row from "./row/Row.tsx";
 import ColumnHeadersRow from "./column/ColumnHeadersRow.tsx";
+import EditCellButton from "./cell/EditCellButton.tsx";
 
 export interface SelectedCell {
     row: number;
@@ -74,16 +75,7 @@ function Sheet() {
                 </div>
             ))}
         </div>
-    <button
-        onClick={() => {}}
-        className={`fixed bottom-4 right-4 px-4 py-2 rounded border font-semibold transition
-        ${selectedCell
-            ? 'bg-[#107C41] text-white hover:bg-[#0e6e39] border-[#0e6e39]'
-            : 'bg-gray-200 text-gray-500 border-gray-300 cursor-not-allowed'}
-    `}
-    >
-        Edit Cell
-    </button>
+        <EditCellButton disabled={!selectedCell} />
         </>
 )
     ;

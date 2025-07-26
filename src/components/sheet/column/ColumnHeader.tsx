@@ -1,4 +1,5 @@
 import {useCallback} from "react";
+import {columnHeader} from "../../common/style/TailwindClasses.ts";
 
 export interface ColumnHeaderProps {
     index: number;
@@ -23,12 +24,11 @@ function ColumnHeader(props: ColumnHeaderProps) {
             style={{
                 width: 80,
                 height: 40,
-                borderBottom: props.isSelected ? '3px solid green' : '1px solid #ccc',
-                backgroundColor: props.isSelected ? '#ddd' : '#f9f9f9',
-                fontWeight: props.isSelected ? 'bold' : 'normal',
-                boxSizing: 'border-box',
+                // borderBottom: props.isSelected ? '3px solid green' : '1px solid #ccc',
+                // backgroundColor: props.isSelected ? '#ddd' : '#f9f9f9',
+                // fontWeight: props.isSelected ? 'bold' : 'normal',
             }}
-            className="border border-gray-300 bg-gray-100 flex items-center justify-center text-sm font-bold"
+            className={`${columnHeader.base} ${props.isSelected ? columnHeader.selected : columnHeader.unselected}`}
         >
             {getColumnLetter()}
         </div>

@@ -1,5 +1,6 @@
 export const cell = {
-
+    base: 'border border-gray-300 flex-shrink-0 flex items-center text-sm',
+    selected: 'relative z-10 outline outline-2 outline-green-600'
 }
 
 export const editCellButton = {

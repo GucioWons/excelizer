@@ -1,3 +1,5 @@
+import {cell} from "../../common/style/TailwindClasses.ts";
+
 export interface CellProps {
     column: number;
     width: number;
@@ -12,12 +14,9 @@ function Cell(props: CellProps) {
             style={{
                 width: props.width,
                 height: props.height,
-                outline: props.isSelected ? '2px solid green' : undefined,
                 outlineOffset: props.isSelected ? '-1px' : undefined,
-                zIndex: props.isSelected ? 10 : undefined,
-                position: props.isSelected ? 'relative' : undefined,
             }}
-            className="border border-gray-300 flex-shrink-0 flex items-center text-sm"
+            className={`${cell.base} ${props.isSelected ? cell.selected : ''}`}
             onClick={props.setSelectedCell}
         >
 

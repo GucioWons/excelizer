@@ -54,29 +54,30 @@ function Sheet() {
 
     return (
         <>
-        <div
-            ref={containerRef}
-            onScroll={handleScroll}
-            className="w-screen h-screen overflow-auto bg-white"
-        >
-            <ColumnHeadersRow columns={columns} rowHeaderWidth={getRowHeaderWidth()}
-                              selectedColumn={selectedCell?.column}/>
-            {Array.from({length: rows}).map((_, rowIdx) => (
-                <div key={`row-${rowIdx}`} className="flex">
+            <div
+                ref={containerRef}
+                onScroll={handleScroll}
+                className="w-screen h-screen overflow-auto bg-white"
+            >
+                <ColumnHeadersRow
+                    columns={columns}
+                    rowHeaderWidth={getRowHeaderWidth()}
+                    selectedColumn={selectedCell?.column}
+                />
+                {Array.from({length: rows}).map((_, rowIdx) => (
                     <Row
+                        key={rowIdx}
                         index={rowIdx}
                         columns={columns}
                         headerWidth={getRowHeaderWidth()}
                         selectedCell={selectedCell}
                         setSelectedCell={setSelectedCell}
                     />
-                </div>
-            ))}
-        </div>
-        <EditCellButton disabled={!selectedCell} />
+                ))}
+            </div>
+            <EditCellButton disabled={!selectedCell}/>
         </>
-)
-    ;
+    );
 }
 
 export default Sheet;

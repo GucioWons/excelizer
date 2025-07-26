@@ -12,10 +12,7 @@ function RowHeader(props: RowHeaderProps) {
 
     return (
         <div
-            style={{
-                width: width,
-                height: defaultCellHeight,
-            }}
+            style={{ width: width, height: defaultCellHeight }}
             className={`${rowHeader.base} ${isSelected ? rowHeader.selected : rowHeader.unselected}`}
         >
             {index + 1}

@@ -1,3 +1,6 @@
+import {rowHeader} from "../../common/style/TailwindClasses.ts";
+import {defaultCellHeight} from "../../common/style/Defaults.ts";
+
 export interface RowHeaderProps {
     index: number;
     width: number;
@@ -5,19 +8,14 @@ export interface RowHeaderProps {
 }
 
 function RowHeader(props: RowHeaderProps) {
+    const { index, width, isSelected } = props;
+
     return (
         <div
-            style={{
-                width: props.width,
-                height: 40,
-                borderRight: props.isSelected ? '3px solid green' : '1px solid #ccc',
-                backgroundColor: props.isSelected ? '#ddd' : '#f9f9f9',
-                fontWeight: props.isSelected ? 'bold' : 'normal',
-                boxSizing: 'border-box',
-            }}
-            className="border border-gray-300 bg-gray-100 flex items-center justify-center text-sm font-bold"
+            style={{ width: width, height: defaultCellHeight }}
+            className={`${rowHeader.base} ${isSelected ? rowHeader.selected : rowHeader.unselected}`}
         >
-            {props.index + 1}
+            {index + 1}
         </div>
     );
 }

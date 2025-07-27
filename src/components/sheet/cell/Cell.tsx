@@ -1,24 +1,23 @@
+import {cell} from "../../common/style/TailwindClasses.ts";
+import {defaultCellHeight, defaultCellWidth} from "../../common/style/Defaults.ts";
+
 export interface CellProps {
-    column: number;
-    width: number;
-    height: number;
     isSelected: boolean;
     setSelectedCell: () => void;
 }
 
 function Cell(props: CellProps) {
+    const { isSelected, setSelectedCell } = props;
+
     return (
         <div
             style={{
-                width: props.width,
-                height: props.height,
-                outline: props.isSelected ? '2px solid green' : undefined,
-                outlineOffset: props.isSelected ? '-1px' : undefined,
-                zIndex: props.isSelected ? 10 : undefined,
-                position: props.isSelected ? 'relative' : undefined,
+                width: defaultCellWidth,
+                height: defaultCellHeight,
+                outlineOffset: isSelected ? '-1px' : undefined,
             }}
-            className="border border-gray-300 flex-shrink-0 flex items-center text-sm"
-            onClick={props.setSelectedCell}
+            className={`${cell.base} ${isSelected ? cell.selected : ''}`}
+            onClick={setSelectedCell}
         >
 
         </div>

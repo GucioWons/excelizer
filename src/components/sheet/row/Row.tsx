@@ -11,22 +11,23 @@ export interface RowProps {
 }
 
 function Row(props: RowProps) {
+    const {index, columns, headerWidth, selectedCell, setSelectedCell} = props;
+
     return (
-        <div
-            key={props.index}
-            className="flex flex-row"
-        >
-            <RowHeader index={props.index} width={props.headerWidth} isSelected={props.selectedCell?.row == props.index} />
-            {Array.from({length: props.columns}).map((_, columnIndex) => (
-                <Cell
-                    key={columnIndex}
-                    column={columnIndex}
-                    width={80}
-                    height={40}
-                    isSelected={props.selectedCell?.row === props.index && props.selectedCell?.column === columnIndex}
-                    setSelectedCell={() => props.setSelectedCell({row: props.index, column: columnIndex})}
-                />
-            ))}
+        <div className="flex">
+            <div className="flex flex-row">
+                <RowHeader
+                    index={index}
+                    width={headerWidth}
+                    isSelected={selectedCell?.row == index}/>
+                {Array.from({length: columns}).map((_, columnIndex) => (
+                    <Cell
+                        key={columnIndex}
+                        isSelected={selectedCell?.row === index && selectedCell?.column === columnIndex}
+                        setSelectedCell={() => setSelectedCell({row: index, column: columnIndex})}
+                    />
+                ))}
+            </div>
         </div>
     );
 }

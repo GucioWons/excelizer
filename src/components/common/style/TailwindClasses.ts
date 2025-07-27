@@ -1,7 +1,8 @@
 export const cell = {
-    base: 'border border-gray-300 flex items-center text-sm',
-    selected: 'relative z-10 outline outline-2 outline-green-600'
-}
+    base: 'border border-gray-300 flex items-center text-sm px-1',
+    selected: 'relative z-10 outline outline-2 outline-green-600 bg-white overflow-visible whitespace-normal text-wrap max-w-none',
+    unselected: 'overflow-hidden whitespace-nowrap text-ellipsis',
+};
 
 export const rowHeader = {
     base: 'border border-gray-300 flex items-center justify-center text-sm',

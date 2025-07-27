@@ -3,6 +3,13 @@ import Row from "./row/Row.tsx";
 import ColumnHeadersRow from "./column/ColumnHeadersRow.tsx";
 import EditCellButton from "./cell/EditCellButton.tsx";
 import {defaultCellHeight, defaultCellWidth} from "../common/style/Defaults.ts";
+import type {CellData} from "./cell/Cell.tsx";
+
+type CellDataMap = Record<string, CellData>;
+
+export interface SheetData {
+    cells: CellDataMap;
+}
 
 export interface SelectedCell {
     row: number;
@@ -13,6 +20,7 @@ function Sheet() {
     const [dimensions, setDimensions] = useState({rows: 0, columns: 0});
     const [initialDimensions, setInitialDimensions] = useState({rows: 0, columns: 0});
     const [selectedCell, setSelectedCell] = useState<SelectedCell>();
+    const [sheetData, setSheetData] = useState<SheetData>({ cells: {} });
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -52,6 +60,21 @@ function Sheet() {
         return String(rows).length * 10 + 20
     }, [rows]);
 
+    function getCellData(row: number, column: number): CellData | undefined {
+        return sheetData.cells[`${row}-${column}`];
+    }
+
+    // function setCellData(row: number, column: number, data: CellData) {
+    //     const key = `${row}-${column}`;
+    //     setSheetData(prev => ({
+    //         ...prev,
+    //         cells: {
+    //             ...prev.cells,
+    //             [key]: data
+    //         }
+    //     }));
+    // }
+
     return (
         <>
             <div
@@ -72,6 +95,7 @@ function Sheet() {
                         headerWidth={getRowHeaderWidth()}
                         selectedCell={selectedCell}
                         setSelectedCell={setSelectedCell}
+                        getCellData={getCellData}
                     />
                 ))}
             </div>

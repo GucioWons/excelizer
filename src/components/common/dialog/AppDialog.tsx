@@ -1,8 +1,7 @@
 import type {ReactNode} from "react";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 
 export interface AppDialogProps {
-    isOpen: boolean;
     title?: string;
     onClose: () => void;
     onConfirm?: () => void;
@@ -13,11 +12,11 @@ export interface AppDialogProps {
 Modal.setAppElement('#root');
 
 function AppDialog(props: AppDialogProps) {
-    const {isOpen, title, onClose, onConfirm, confirmText, children} = props;
+    const {title, onClose, onConfirm, confirmText, children} = props;
 
     return (
         <Modal
-            isOpen={isOpen}
+            isOpen={true}
             onRequestClose={onClose}
             className="bg-white rounded-md max-w-md mx-auto mt-24 p-6 outline-none shadow-lg"
             overlayClassName="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start z-50"

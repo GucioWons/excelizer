@@ -64,16 +64,16 @@ function Sheet() {
         return sheetData.cells[`${row}-${column}`];
     }
 
-    // function setCellData(row: number, column: number, data: CellData) {
-    //     const key = `${row}-${column}`;
-    //     setSheetData(prev => ({
-    //         ...prev,
-    //         cells: {
-    //             ...prev.cells,
-    //             [key]: data
-    //         }
-    //     }));
-    // }
+    function setCellData(row: number, column: number, data: CellData) {
+        const key = `${row}-${column}`;
+        setSheetData(prev => ({
+            ...prev,
+            cells: {
+                ...prev.cells,
+                [key]: data
+            }
+        }));
+    }
 
     return (
         <>
@@ -99,7 +99,10 @@ function Sheet() {
                     />
                 ))}
             </div>
-            <EditCellButton disabled={!selectedCell}/>
+            <EditCellButton
+                disabled={!selectedCell}
+                setCellData={(data) => setCellData(selectedCell!.row, selectedCell!.column, data)}
+            />
         </>
     );
 }

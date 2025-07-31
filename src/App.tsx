@@ -1,9 +1,9 @@
-import Sheet from "./components/sheet/Sheet.tsx";
+import Editor from "./components/common/Editor.tsx";
 
 function App() {
 
   return (
-      <Sheet />
+      <Editor />
   )
 }
 

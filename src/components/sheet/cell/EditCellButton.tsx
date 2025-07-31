@@ -1,4 +1,4 @@
-import {editCellButton} from "../../common/style/TailwindClasses.ts";
+import {button, editCellButton} from "../../common/style/TailwindClasses.ts";
 import type {CellData} from "./Cell.tsx";
 import {showDialog} from "../../common/dialog/DialogHelper.tsx";
 import EditCellDialog from "./EditCellDialog.tsx";
@@ -29,7 +29,7 @@ function EditCellButton(props: EditCellButtonProps) {
     return (
         <button
             onClick={openEditCellDialog}
-            className={`${editCellButton.base} ${disabled ? editCellButton.disabled : editCellButton.enabled}`}
+            className={`${editCellButton} ${disabled ? button.disabled : button.normal}`}
         >
             Edit Cell
         </button>

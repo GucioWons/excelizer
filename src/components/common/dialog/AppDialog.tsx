@@ -1,5 +1,6 @@
 import type {ReactNode} from "react";
 import Modal from "react-modal";
+import {button, modal} from "../style/TailwindClasses.ts";
 
 export interface AppDialogProps {
     title?: string;
@@ -18,21 +19,23 @@ function AppDialog(props: AppDialogProps) {
         <Modal
             isOpen={true}
             onRequestClose={onClose}
-            className="bg-white rounded-md max-w-md mx-auto mt-24 p-6 outline-none shadow-lg"
-            overlayClassName="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start z-50"
+            className={modal.modal}
+            overlayClassName={modal.overlay}
         >
-            {title && <h2 className="text-lg font-semibold mb-4">{title}</h2>}
-            <div className="mb-6">{children}</div>
-            <div className="flex justify-end gap-2">
+            {title &&
+                <h2 className={modal.title}>{title}</h2>
+            }
+            <div className={modal.content}>{children}</div>
+            <div className={modal.buttons}>
                 <button
-                    className="px-4 py-2 rounded border border-gray-300 hover:bg-gray-100"
+                    className={button.outlined}
                     onClick={onClose}
                 >
                     Cancel
                 </button>
                 {onConfirm && (
                     <button
-                        className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                        className={button.normal}
                         onClick={onConfirm}
                     >
                         {confirmText}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AppDialog from "../../common/dialog/AppDialog.tsx";
 import type {CellData} from "./Cell.tsx";
+import {input} from "../../common/style/TailwindClasses.ts";
 
 type EditCellDialogProps = {
     initialValue: CellData;
@@ -31,7 +32,7 @@ function EditCellDialog(props: EditCellDialogProps) {
                 type="text"
                 value={value.value}
                 onChange={(e) => setValue({ value: e.target.value })}
-                className="w-full border rounded px-2 py-1"
+                className={input}
             />
         </AppDialog>
     );

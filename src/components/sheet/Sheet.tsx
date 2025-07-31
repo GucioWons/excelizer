@@ -64,8 +64,18 @@ function Sheet() {
         return sheetData.cells[`${row}-${column}`];
     }
 
-    function setCellData(row: number, column: number, data: CellData) {
-        const key = `${row}-${column}`;
+    const getSelectedCellData = useCallback(() => {
+        if (selectedCell) {
+            return sheetData.cells[`${selectedCell.row}-${selectedCell.column}`];
+        }
+        return undefined;
+    }, [selectedCell, sheetData.cells]);
+
+    const setSelectedCellData = useCallback((data: CellData) => {
+        if (!selectedCell) {
+            return;
+        }
+        const key = `${selectedCell.row}-${selectedCell.column}`;
         setSheetData(prev => ({
             ...prev,
             cells: {
@@ -73,7 +83,7 @@ function Sheet() {
                 [key]: data
             }
         }));
-    }
+    }, [selectedCell]);
 
     return (
         <>
@@ -101,7 +111,8 @@ function Sheet() {
             </div>
             <EditCellButton
                 disabled={!selectedCell}
-                setCellData={(data) => setCellData(selectedCell!.row, selectedCell!.column, data)}
+                data={getSelectedCellData()}
+                setCellData={setSelectedCellData}
             />
         </>
     );

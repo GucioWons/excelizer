@@ -14,10 +14,6 @@ export interface CellProps {
 function Cell(props: CellProps) {
     const { isSelected, setSelectedCell, data } = props;
 
-    if (data) {
-        console.log(data);
-    }
-
     return (
         <div
             style={{

@@ -1,25 +1,25 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from "react-dom/client";
+import type {ReactElement} from "react";
 
-type DialogProps<R> = {
-    onClose: (result: R) => void;
+type DialogComponentProps<Result, Props> = Props & {
+    onClose: (result: Result | null) => void;
 };
 
-export function openDialog<P, R>(
-    DialogComponent: React.ComponentType<P & DialogProps<R>>,
-    props: P
-): Promise<R> {
-    const container = document.createElement('div');
-    document.body.appendChild(container);
+export function showDialog<Props, Result>(
+    DialogComponent: (props: DialogComponentProps<Result, Props>) => ReactElement,
+    props: Props
+): Promise<Result | null> {
+    return new Promise<Result | null>((resolve) => {
+        const container = document.createElement("div");
+        document.body.appendChild(container);
+        const root = ReactDOM.createRoot(container);
 
-    return new Promise<R>((resolve) => {
-        const handleClose = (result: R) => {
+        const handleClose = (result: Result | null) => {
             root.unmount();
             container.remove();
             resolve(result);
         };
 
-        const root = createRoot(container);
         root.render(<DialogComponent {...props} onClose={handleClose} />);
     });
 }

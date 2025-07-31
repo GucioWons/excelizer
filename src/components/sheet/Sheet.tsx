@@ -8,6 +8,8 @@ import type {CellData} from "./cell/Cell.tsx";
 type CellDataMap = Record<string, CellData>;
 
 export interface SheetData {
+    name: string;
+    order: number;
     cells: CellDataMap;
 }
 
@@ -20,7 +22,7 @@ function Sheet() {
     const [dimensions, setDimensions] = useState({rows: 0, columns: 0});
     const [initialDimensions, setInitialDimensions] = useState({rows: 0, columns: 0});
     const [selectedCell, setSelectedCell] = useState<SelectedCell>();
-    const [sheetData, setSheetData] = useState<SheetData>({ cells: {} });
+    const [sheetData, setSheetData] = useState<SheetData>({ name: "Sheet 1", order: 1, cells: {} });
 
     const containerRef = useRef<HTMLDivElement>(null);
 

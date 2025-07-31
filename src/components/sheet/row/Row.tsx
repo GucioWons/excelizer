@@ -1,4 +1,4 @@
-import Cell from "../cell/Cell.tsx";
+import Cell, {type CellData} from "../cell/Cell.tsx";
 import RowHeader from "./RowHeader.tsx";
 import type {SelectedCell} from "../Sheet.tsx";
 
@@ -8,10 +8,11 @@ export interface RowProps {
     headerWidth: number;
     selectedCell?: SelectedCell;
     setSelectedCell: (selectedCell: SelectedCell) => void;
+    getCellData: (row: number, column: number) => CellData | undefined;
 }
 
 function Row(props: RowProps) {
-    const {index, columns, headerWidth, selectedCell, setSelectedCell} = props;
+    const { index, columns, headerWidth, selectedCell, setSelectedCell, getCellData } = props;
 
     return (
         <div className="flex">
@@ -25,6 +26,7 @@ function Row(props: RowProps) {
                         key={columnIndex}
                         isSelected={selectedCell?.row === index && selectedCell?.column === columnIndex}
                         setSelectedCell={() => setSelectedCell({row: index, column: columnIndex})}
+                        data={getCellData(index, columnIndex)}
                     />
                 ))}
             </div>

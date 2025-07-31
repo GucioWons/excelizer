@@ -3,6 +3,13 @@ import Row from "./row/Row.tsx";
 import ColumnHeadersRow from "./column/ColumnHeadersRow.tsx";
 import EditCellButton from "./cell/EditCellButton.tsx";
 import {defaultCellHeight, defaultCellWidth} from "../common/style/Defaults.ts";
+import type {CellData} from "./cell/Cell.tsx";
+
+type CellDataMap = Record<string, CellData>;
+
+export interface SheetData {
+    cells: CellDataMap;
+}
 
 export interface SelectedCell {
     row: number;
@@ -13,6 +20,7 @@ function Sheet() {
     const [dimensions, setDimensions] = useState({rows: 0, columns: 0});
     const [initialDimensions, setInitialDimensions] = useState({rows: 0, columns: 0});
     const [selectedCell, setSelectedCell] = useState<SelectedCell>();
+    const [sheetData, setSheetData] = useState<SheetData>({ cells: {} });
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -52,6 +60,31 @@ function Sheet() {
         return String(rows).length * 10 + 20
     }, [rows]);
 
+    function getCellData(row: number, column: number): CellData | undefined {
+        return sheetData.cells[`${row}-${column}`];
+    }
+
+    const getSelectedCellData = useCallback(() => {
+        if (selectedCell) {
+            return sheetData.cells[`${selectedCell.row}-${selectedCell.column}`];
+        }
+        return undefined;
+    }, [selectedCell, sheetData.cells]);
+
+    const setSelectedCellData = useCallback((data: CellData) => {
+        if (!selectedCell) {
+            return;
+        }
+        const key = `${selectedCell.row}-${selectedCell.column}`;
+        setSheetData(prev => ({
+            ...prev,
+            cells: {
+                ...prev.cells,
+                [key]: data
+            }
+        }));
+    }, [selectedCell]);
+
     return (
         <>
             <div
@@ -72,10 +105,15 @@ function Sheet() {
                         headerWidth={getRowHeaderWidth()}
                         selectedCell={selectedCell}
                         setSelectedCell={setSelectedCell}
+                        getCellData={getCellData}
                     />
                 ))}
             </div>
-            <EditCellButton disabled={!selectedCell}/>
+            <EditCellButton
+                disabled={!selectedCell}
+                data={getSelectedCellData()}
+                setCellData={setSelectedCellData}
+            />
         </>
     );
 }

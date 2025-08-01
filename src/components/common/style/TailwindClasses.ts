@@ -16,7 +16,7 @@ export const columnHeader = {
     selected: 'bg-gray-300 font-bold border-b-4 border-b-green-600'
 }
 
-export const editCellButton = 'fixed bottom-4 right-4';
+export const editCellButton = 'absolute bottom-2 right-2';
 
 export const button = {
     normal: 'px-4 py-2 rounded bg-[#107C41] text-white hover:bg-[#0e6e39] border-[#0e6e39]',

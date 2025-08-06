@@ -2,14 +2,13 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import Row from "./row/Row.tsx";
 import ColumnHeadersRow from "./column/ColumnHeadersRow.tsx";
 import EditCellButton from "./cell/EditCellButton.tsx";
-import {defaultCellHeight, defaultCellWidth} from "../common/style/Defaults.ts";
+import {defaultCellHeight, defaultCellWidth} from "../../common/style/Defaults.ts";
 import type {CellData} from "./cell/Cell.tsx";
 
 type CellDataMap = Record<string, CellData>;
 
 export interface SheetData {
     name: string;
-    order: number;
     cells: CellDataMap;
 }
 

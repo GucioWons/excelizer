@@ -1,6 +1,6 @@
-import {button, editCellButton} from "../../common/style/TailwindClasses.ts";
+import {button, editCellButton} from "../../../common/style/TailwindClasses.ts";
 import type {CellData} from "./Cell.tsx";
-import {showDialog} from "../../common/dialog/DialogHelper.tsx";
+import {showDialog} from "../../../common/dialog/DialogHelper.tsx";
 import EditCellDialog from "./EditCellDialog.tsx";
 
 export interface EditCellButtonProps {

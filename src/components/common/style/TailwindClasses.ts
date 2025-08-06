@@ -33,3 +33,12 @@ export const modal = {
     content: 'mb-6 text-gray-800',
     buttons: 'flex justify-between'
 }
+
+export const sheetTabs = {
+    container: 'flex flex-col h-screen',
+    panelsContainer: 'flex-1 overflow-auto relative',
+    panels: 'h-full',
+    panel: 'h-full',
+    listContainer: 'border-t bg-gray-100',
+    list: 'flex space-x-1 border-b p-2'
+}

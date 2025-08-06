@@ -1,5 +1,5 @@
-import {rowHeader} from "../../common/style/TailwindClasses.ts";
-import {defaultCellHeight} from "../../common/style/Defaults.ts";
+import {rowHeader} from "../../../common/style/TailwindClasses.ts";
+import {defaultCellHeight} from "../../../common/style/Defaults.ts";
 
 export interface RowHeaderProps {
     index: number;

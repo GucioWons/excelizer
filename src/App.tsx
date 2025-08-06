@@ -1,4 +1,4 @@
-import Editor from "./components/common/Editor.tsx";
+import Editor from "./components/editor/Editor.tsx";
 
 function App() {
 

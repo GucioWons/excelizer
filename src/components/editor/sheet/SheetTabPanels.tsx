@@ -1,5 +1,6 @@
 import {TabPanel, TabPanels} from "@headlessui/react";
 import Sheet, {type SheetData} from "./Sheet.tsx";
+import {sheetTabs} from "../../common/style/TailwindClasses.ts";
 
 export interface SheetTabPanelsProps {
     sheets: SheetData[]
@@ -10,10 +11,10 @@ function SheetTabPanels(props: SheetTabPanelsProps) {
     const { sheets, updateSheet } = props
 
     return (
-        <div className="flex-1 overflow-auto relative">
-            <TabPanels className="h-full">
+        <div className={sheetTabs.panelsContainer}>
+            <TabPanels className={sheetTabs.panels}>
                 {sheets.map((sheet, index) => (
-                    <TabPanel key={index} className="h-full">
+                    <TabPanel key={index} className={sheetTabs.panel}>
                         <Sheet
                             sheet={sheet}
                             setSheetData={updateSheet}

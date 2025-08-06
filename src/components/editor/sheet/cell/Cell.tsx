@@ -1,5 +1,5 @@
-import {cell} from "../../common/style/TailwindClasses.ts";
-import {defaultCellHeight, defaultCellWidth} from "../../common/style/Defaults.ts";
+import {cell} from "../../../common/style/TailwindClasses.ts";
+import {defaultCellHeight, defaultCellWidth} from "../../../common/style/Defaults.ts";
 
 export interface CellData {
     value?: string;

@@ -1,5 +1,5 @@
-import {columnHeader} from "../../common/style/TailwindClasses.ts";
-import {defaultCellHeight} from "../../common/style/Defaults.ts";
+import {columnHeader} from "../../../common/style/TailwindClasses.ts";
+import {defaultCellHeight} from "../../../common/style/Defaults.ts";
 
 export interface EmptyColumnHeaderProps {
     width: number

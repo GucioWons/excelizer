@@ -2,12 +2,13 @@ import {useCallback, useEffect, useRef, useState} from "react";
 import Row from "./row/Row.tsx";
 import ColumnHeadersRow from "./column/ColumnHeadersRow.tsx";
 import EditCellButton from "./cell/EditCellButton.tsx";
-import {defaultCellHeight, defaultCellWidth} from "../common/style/Defaults.ts";
+import {defaultCellHeight, defaultCellWidth} from "../../common/style/Defaults.ts";
 import type {CellData} from "./cell/Cell.tsx";
 
 type CellDataMap = Record<string, CellData>;
 
 export interface SheetData {
+    name: string;
     cells: CellDataMap;
 }
 
@@ -16,11 +17,17 @@ export interface SelectedCell {
     column: number;
 }
 
-function Sheet() {
+export interface SheetProps {
+    sheet: SheetData;
+    setSheetData: (data: SheetData) => void;
+}
+
+function Sheet(props: SheetProps) {
+    const { sheet, setSheetData } = props;
+
     const [dimensions, setDimensions] = useState({rows: 0, columns: 0});
     const [initialDimensions, setInitialDimensions] = useState({rows: 0, columns: 0});
     const [selectedCell, setSelectedCell] = useState<SelectedCell>();
-    const [sheetData, setSheetData] = useState<SheetData>({ cells: {} });
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -61,36 +68,37 @@ function Sheet() {
     }, [rows]);
 
     function getCellData(row: number, column: number): CellData | undefined {
-        return sheetData.cells[`${row}-${column}`];
+        return sheet.cells[`${row}-${column}`];
     }
 
     const getSelectedCellData = useCallback(() => {
         if (selectedCell) {
-            return sheetData.cells[`${selectedCell.row}-${selectedCell.column}`];
+            return sheet.cells[`${selectedCell.row}-${selectedCell.column}`];
         }
         return undefined;
-    }, [selectedCell, sheetData.cells]);
+    }, [selectedCell, sheet.cells]);
 
     const setSelectedCellData = useCallback((data: CellData) => {
         if (!selectedCell) {
             return;
         }
+
         const key = `${selectedCell.row}-${selectedCell.column}`;
-        setSheetData(prev => ({
-            ...prev,
+        setSheetData({
+            ...sheet,
             cells: {
-                ...prev.cells,
+                ...sheet.cells,
                 [key]: data
             }
-        }));
-    }, [selectedCell]);
+        });
+    }, [selectedCell, sheet, setSheetData]);
 
     return (
         <>
             <div
                 ref={containerRef}
                 onScroll={handleScroll}
-                className="w-screen h-screen overflow-auto bg-white"
+                className="w-full h-full overflow-auto bg-white relative"
             >
                 <ColumnHeadersRow
                     columns={columns}
@@ -108,14 +116,15 @@ function Sheet() {
                         getCellData={getCellData}
                     />
                 ))}
+                <EditCellButton
+                    disabled={!selectedCell}
+                    data={getSelectedCellData()}
+                    setCellData={setSelectedCellData}
+                />
             </div>
-            <EditCellButton
-                disabled={!selectedCell}
-                data={getSelectedCellData()}
-                setCellData={setSelectedCellData}
-            />
-        </>
-    );
-}
 
-export default Sheet;
+            </>
+            );
+            }
+
+            export default Sheet;

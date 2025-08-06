@@ -1,6 +1,6 @@
 import {useCallback} from "react";
-import {columnHeader} from "../../common/style/TailwindClasses.ts";
-import {defaultCellHeight, defaultCellWidth} from "../../common/style/Defaults.ts";
+import {columnHeader} from "../../../common/style/TailwindClasses.ts";
+import {defaultCellHeight, defaultCellWidth} from "../../../common/style/Defaults.ts";
 
 export interface ColumnHeaderProps {
     index: number;

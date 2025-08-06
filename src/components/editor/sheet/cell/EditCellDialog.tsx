@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import AppDialog from "../../common/dialog/AppDialog.tsx";
+import AppDialog from "../../../common/dialog/AppDialog.tsx";
 import type {CellData} from "./Cell.tsx";
-import {input} from "../../common/style/TailwindClasses.ts";
+import {input} from "../../../common/style/TailwindClasses.ts";
 
 type EditCellDialogProps = {
     initialValue: CellData;

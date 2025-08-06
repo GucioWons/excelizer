@@ -1,5 +1,6 @@
 import {VariableType} from "./VariableType.ts";
 import {useCallback, useState} from "react";
+import VariableRow from "./VariableRow.tsx";
 
 export interface VariableData {
     name: string;
@@ -24,11 +25,7 @@ function VariablesEditor() {
 
     return (
         <div>
-            {variables.map(variable => (
-                <div>
-                    <div>{variable.name}, {variable.type}, {variable.nullable.toString()}</div>
-                </div>
-            ))}
+            {variables.map(variable => <VariableRow variable={variable} />)}
             <button onClick={addVariable}>Add variable</button>
         </div>
     );

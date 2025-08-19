@@ -21,11 +21,24 @@ function VariablesEditor() {
         setVariables(
             [...variables, {name: "", type: VariableType.STRING, nullable: false}],
         );
-    }, [variables]);
+    }, [variables, setVariables]);
+
+    const updateVariable = useCallback((index: number, updated: VariableData) => {
+        setVariables((prev) => {
+            const copy = [...prev];
+            copy[index] = updated;
+            return copy;
+        });
+    }, [setVariables])
 
     return (
         <div>
-            {variables.map(variable => <VariableRow variable={variable} />)}
+            {variables.map((variable, index) =>
+                <VariableRow
+                    variable={variable}
+                    onChange={(updated) => updateVariable(index, updated)}
+                />
+            )}
             <button onClick={addVariable}>Add variable</button>
         </div>
     );

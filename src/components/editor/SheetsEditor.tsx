@@ -5,7 +5,7 @@ import SheetTabPanels from "./sheet/SheetTabPanels.tsx";
 import SheetTabList from "./sheet/SheetTabList.tsx";
 import {sheetTabs} from "../common/style/TailwindClasses.ts";
 
-function Editor() {
+function SheetsEditor() {
     const initialSheets: SheetData[] = [
         {name: 'New sheet', cells: {}}]
 
@@ -36,4 +36,4 @@ function Editor() {
     )
 }
 
-export default Editor;
+export default SheetsEditor;

@@ -1,9 +1,9 @@
-import VariablesEditor from "./components/editor/variable/VariablesEditor.tsx";
+import TemplateEditor from "./components/editor/TemplateEditor.tsx";
 
 function App() {
 
   return (
-      <VariablesEditor />
+      <TemplateEditor />
   )
 }
 

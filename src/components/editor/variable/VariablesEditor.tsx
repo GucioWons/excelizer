@@ -1,6 +1,8 @@
 import {VariableType} from "./VariableType.ts";
 import {useCallback, useState} from "react";
 import VariableRow from "./VariableRow.tsx";
+import {button} from "../../common/style/TailwindClasses.ts";
+import VariablesHeaders from "./VariablesHeaders.tsx";
 
 export interface VariableData {
     name: string;
@@ -9,13 +11,7 @@ export interface VariableData {
 }
 
 function VariablesEditor() {
-    const initialVariables: VariableData[] = [
-        {name: "name", type: VariableType.STRING, nullable: false},
-        {name: "number", type: VariableType.NUMERIC, nullable: true},
-        {name: "deprecated", type: VariableType.BOOLEAN, nullable: false}
-    ];
-
-    const [variables, setVariables] = useState(initialVariables)
+    const [variables, setVariables] = useState<VariableData[]>([])
 
     const addVariable = useCallback(() => {
         setVariables(
@@ -32,14 +28,15 @@ function VariablesEditor() {
     }, [setVariables])
 
     return (
-        <div>
+        <div className={"flex flex-col m-10 gap-4"}>
+            <VariablesHeaders/>
             {variables.map((variable, index) =>
                 <VariableRow
                     variable={variable}
                     onChange={(updated) => updateVariable(index, updated)}
                 />
             )}
-            <button onClick={addVariable}>Add variable</button>
+            <button className={button.normal} onClick={addVariable}>Add variable</button>
         </div>
     );
 }

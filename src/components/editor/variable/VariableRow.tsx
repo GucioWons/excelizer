@@ -10,14 +10,14 @@ function VariableRow(props: VariableRowProps) {
     const { variable, onChange } = props;
 
     return (
-        <div className="flex gap-2">
+        <div className="flex gap-4">
             <input
                 type="text"
                 value={variable.name}
                 onChange={(e) =>
                     onChange({...variable, name: e.target.value})
                 }
-                className="border p-1 rounded"
+                className='flex-[3] border border-[#107C41] rounded px-2 py-1'
                 placeholder="Name"
             />
 
@@ -26,7 +26,7 @@ function VariableRow(props: VariableRowProps) {
                 onChange={(e) =>
                     onChange({...variable, type: e.target.value as VariableType})
                 }
-                className="border p-1 rounded"
+                className='flex-[3] border border-[#107C41] rounded px-2 py-1'
             >
                 {Object.values(VariableType).map((type) => (
                     <option key={type} value={type}>
@@ -38,6 +38,7 @@ function VariableRow(props: VariableRowProps) {
             <input
                 type="checkbox"
                 checked={variable.nullable}
+                className='flex-[1]'
                 onChange={(e) =>
                     onChange({...variable, nullable: e.target.checked})
                 }
